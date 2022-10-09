@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import oit.is.z1102.kaizi.janken.model.Janken;
+import java.util.Random;
 
 @Controller
 public class JankenController {
@@ -22,6 +23,8 @@ public class JankenController {
   public String janken(@PathVariable("te") String te, ModelMap model) {
 
     int user = 0;
+    Random rand = new Random();
+    int cpu = rand.nextInt(3);
     Janken janken = new Janken();
 
     if (te.equals("Gu")) {
@@ -33,9 +36,9 @@ public class JankenController {
     }
 
     janken.setUser(user);
+    janken.setCpu(cpu);
     janken.result();
 
-    int cpu = janken.getCpu();
     String result = janken.getResult();
 
     if (user == 0) {
