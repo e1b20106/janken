@@ -6,8 +6,6 @@ public class Janken {
   String result;
 
   public Janken() {
-    this.user = 0;
-    this.cpu = 0;
   }
 
   public void result() {
