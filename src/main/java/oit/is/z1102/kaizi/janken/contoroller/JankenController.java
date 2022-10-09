@@ -38,10 +38,10 @@ public class JankenController {
     }
 
     janken.setUser(user);
-    cpu = janken.getCpu();
     janken.result();
 
     String result = janken.getResult();
+    cpu = janken.getCpu();
 
     if (user == 0) {
       model.addAttribute("tuser", "Gu");
