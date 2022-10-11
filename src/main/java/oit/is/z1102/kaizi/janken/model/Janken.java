@@ -1,11 +1,20 @@
 package oit.is.z1102.kaizi.janken.model;
 
+//<<<<<<< HEAD
+//=======
+
+//>>>>>>> main
 public class Janken {
   int user;
   int cpu;
   String result;
 
   public Janken() {
+    // <<<<<<< HEAD
+    // =======
+    this.user = 0;
+    this.cpu = 0;
+    // >>>>>>> main
   }
 
   public void result() {
