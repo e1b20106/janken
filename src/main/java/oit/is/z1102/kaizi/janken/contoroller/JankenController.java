@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import oit.is.z1102.kaizi.janken.model.Janken;
+//<<<<<<< HEAD
+import java.util.Random;
+//=======
+//>>>>>>> main
 
 @Controller
 public class JankenController {
@@ -18,15 +22,24 @@ public class JankenController {
     return "janken.html";
   }
 
-  /**
-   * @return
-   */
+  // <<<<<<< HEAD
+  @GetMapping("/janken")
+  public String name() {
+    return "janken.html";
+  }
+  // =======
+
+  // >>>>>>> main
 
   @GetMapping("/janken/{te}")
   public String janken(@PathVariable("te") String te, ModelMap model) {
 
     int user = 0;
-    int cpu = 0;
+    // <<<<<<< HEAD
+    Random rand = new Random();
+    int cpu = rand.nextInt(3);
+    // =======
+    // >>>>>>> main
     Janken janken = new Janken();
 
     if (te.equals("Gu")) {
@@ -64,5 +77,8 @@ public class JankenController {
     return "janken.html";
 
   }
+  // <<<<<<< HEAD
+  // =======
 
+  // >>>>>>> main
 }
