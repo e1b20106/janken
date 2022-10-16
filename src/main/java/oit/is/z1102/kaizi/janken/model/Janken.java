@@ -1,15 +1,11 @@
 package oit.is.z1102.kaizi.janken.model;
 
-import java.util.Random;
-
 public class Janken {
   int user;
   int cpu;
   String result;
 
   public Janken() {
-    this.user = 0;
-    this.cpu = 0;
   }
 
   public void result() {

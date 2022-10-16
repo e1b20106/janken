@@ -3,25 +3,11 @@
 
 <head>
   <meta charset="utf-8">
-  <title>janken</title>
+  <title>Janken</title>
 </head>
 
-
 <body>
-  <h1>Janken GAME!</h1>
-  <div th:if="${name}">
-    Hi [[${name}]]<br>
-  </div>
-  <div>
-    <a href="/janken/Gu">ぐー</a>
-    <a href="/janken/Ty">ちょき</a>
-    <a href="/janken/Pa">ぱー</a>
-  </div>
-  <div th:if="${result}">
-    あなたの手 [[${tuser}]]<br>
-    相手の手 [[${tcpu}]]<br>
-    結果 [[${result}]]!<br>
-  </div>
+  <a href="/janken">jankenへのGETをリクエスト</a>
 </body>
 
 </html>
