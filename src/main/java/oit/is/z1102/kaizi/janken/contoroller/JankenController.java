@@ -1,11 +1,15 @@
 package oit.is.z1102.kaizi.janken.contoroller;
 
+import java.security.Principal;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestParam;
+import oit.is.z1102.kaizi.janken.model.Entry;
 
 import oit.is.z1102.kaizi.janken.model.Janken;
 import java.util.Random;
@@ -13,9 +17,16 @@ import java.util.Random;
 @Controller
 public class JankenController {
 
-  @PostMapping("/janken")
-  public String name(@RequestParam String name, ModelMap model) {
-    model.addAttribute("name", name);
+  @Autowired
+  private Entry room;
+
+  @GetMapping("/janken")
+  public String name(Principal prin, ModelMap model1, ModelMap model2) {
+    String loginUser = prin.getName();
+    this.room.addUser(loginUser);
+    model1.addAttribute("user", loginUser);
+    model2.addAttribute("room", this.room);
+
     return "janken.html";
   }
 
