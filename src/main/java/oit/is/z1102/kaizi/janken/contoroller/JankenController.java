@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import oit.is.z1102.kaizi.janken.model.Janken;
 
+import java.util.Random;
+
 @Controller
 public class JankenController {
 
@@ -18,15 +20,17 @@ public class JankenController {
     return "janken.html";
   }
 
-  /**
-   * @return
-   */
+  @GetMapping("/janken")
+  public String name() {
+    return "janken.html";
+  }
 
   @GetMapping("/janken/{te}")
   public String janken(@PathVariable("te") String te, ModelMap model) {
 
     int user = 0;
-    int cpu = 0;
+    Random rand = new Random();
+    int cpu = rand.nextInt(3);
     Janken janken = new Janken();
 
     if (te.equals("Gu")) {
