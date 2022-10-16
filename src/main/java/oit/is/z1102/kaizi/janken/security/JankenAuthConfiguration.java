@@ -30,12 +30,12 @@ public class JankenAuthConfiguration {
     // $ sshrun htpasswd -nbBC 10 user1 p@ss
     UserDetails user1 = users
         .username("user1")
-        .password("$2y$10$v4s53nJn2d2iLtFWMS0QQ.eh/JowLMPCWFUxUOUgT1Zculp8CR62e")
+        .password("$2y$10$.Kf4x9QrWGSsn/PWgMqWJu7OMXgAVqHej28aXxGVcAMVmhurqe5hm")
         .roles("USER")
         .build();
     UserDetails user2 = users
         .username("user2")
-        .password("$2y$10$v4s53nJn2d2iLtFWMS0QQ.eh/JowLMPCWFUxUOUgT1Zculp8CR62e")
+        .password("$2y$10$KN.HpUJyi4JL81ijwEb6CeUwdNwiM23SZQeibHAH6vv5l1REIqHCG")
         .roles("USER")
         .build();
 
