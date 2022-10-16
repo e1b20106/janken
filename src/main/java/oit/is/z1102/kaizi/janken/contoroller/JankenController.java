@@ -1,5 +1,7 @@
 package oit.is.z1102.kaizi.janken.contoroller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,14 +11,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import oit.is.z1102.kaizi.janken.model.Janken;
 
+import java.util.Random;
+
 @Controller
 public class JankenController {
 
-  @PostMapping("/janken")
-  public String name(@RequestParam String name, ModelMap model) {
-    model.addAttribute("name", name);
+  @GetMapping("/janken")
+  public String name(ModelMap model, Principal prin) {
+    String loginUser = prin.getName(); // ログインユーザ情報
+    model.addAttribute("name", loginUser);
     return "janken.html";
   }
+
+  /*
+   * @PostMapping("/janken")
+   * public String noname() {
+   * return "janken.html";
+   * }
+   */
 
   /**
    * @return
@@ -26,7 +38,8 @@ public class JankenController {
   public String janken(@PathVariable("te") String te, ModelMap model) {
 
     int user = 0;
-    int cpu = 0;
+    Random rand = new Random();
+    int cpu = rand.nextInt(3);
     Janken janken = new Janken();
 
     if (te.equals("Gu")) {
