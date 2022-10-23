@@ -1,76 +1,34 @@
-package oit.is.z1102.kaizi.janken.contoroller;
+package oit.is.z1102.kaizi.janken.model;
 
-import java.security.Principal;
+public class Janken {
+  int user;
+  int cpu;
+  String result;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
-import oit.is.z1102.kaizi.janken.model.Entry;
-
-import oit.is.z1102.kaizi.janken.model.Janken;
-import java.util.Random;
-
-@Controller
-public class JankenController {
-
-  @Autowired
-  private Entry room;
-
-  @GetMapping("/janken")
-  public String name(Principal prin, ModelMap model1, ModelMap model2) {
-    String loginUser = prin.getName();
-    this.room.addUser(loginUser);
-    model1.addAttribute("user", loginUser);
-    model2.addAttribute("room", this.room);
-
-    return "janken.html";
+  public Janken() {
   }
 
-  @GetMapping("/janken/{te}")
-  public String janken(@PathVariable("te") String te, ModelMap model) {
-
-    int user = 0;
-    Random rand = new Random();
-    int cpu = rand.nextInt(3);
-    Janken janken = new Janken();
-
-    if (te.equals("Gu")) {
-      user = 0;
-    } else if (te.equals("Ty")) {
-      user = 1;
-    } else if (te.equals("Pa")) {
-      user = 2;
-    }
-
-    janken.setUser(user);
-    janken.setCpu(cpu);
-    janken.result();
-
-    String result = janken.getResult();
-
-    if (user == 0) {
-      model.addAttribute("tuser", "Gu");
-    } else if (user == 1) {
-      model.addAttribute("tuser", "Ty");
+  public void result() {
+    if (user == cpu) {
+      result = "Draw";
+    } else if ((user == 0 && cpu == 1) || (user == 1 && cpu == 2) || (user == 2 && cpu == 0)) {
+      result = "You Win";
     } else {
-      model.addAttribute("tuser", "Pa");
+      result = "You Lose";
     }
+  }
 
-    if (cpu == 0) {
-      model.addAttribute("tcpu", "Gu");
-    } else if (cpu == 1) {
-      model.addAttribute("tcpu", "Ty");
-    } else {
-      model.addAttribute("tcpu", "Pa");
-    }
+  public void setUser(int user) {
+    this.user = user;
+  }
 
-    model.addAttribute("result", result);
+  public void setCpu(int cpu) {
+    this.cpu = cpu;
+  }
 
-    return "janken.html";
-
+  public String getResult() {
+    return result;
   }
 }
+
+/* G=0,T=1,P=2 */
