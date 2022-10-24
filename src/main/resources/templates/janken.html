@@ -10,27 +10,22 @@
 <body>
   <a href="/logout">ログアウト</a>
   <h1>Janken GAME!</h1>
-  <h4>エントリー</h4>
-  <div th:if="${room}">
-    <ul>
-      <!--eachは所謂for each．この場合roomオブジェクトのusersフィールドにあるすべてのデータを一通り表示する
-        thが指定されているので[]が不要になる-->
-      <li th:each="user : ${room.users}">[[${user}]]</li>
-    </ul>
-  </div>
   <div th:if="${user}">
     Hi [[${user}]]<br>
   </div>
-  <div>
-    <a href="/janken/Gu">ぐー</a>
-    <a href="/janken/Ty">ちょき</a>
-    <a href="/janken/Pa">ぱー</a>
+  <h2>エントリー</h2>
+  <li th:each="User, stat : ${users}"><a th:href="@{/match(id=${user.id})}"> [[${user.name}]]</a></li>
+  <h2>試合結果</h2>
+  <div th:each="Match,stat:${matches}">
+    <tr>
+      <td>id:[[${Match.id}]]</td>
+      <td>user1:[[${Match.user1}]]</td>
+      <td>user2:[[${Match.user2}]]</td>
+      <td>user1の手:[[${Match.user1Hand}]]</td>
+      <td>user2の手:[[${Match.user2Hand}]]</td>
+    </tr>
   </div>
-  <div th:if="${result}">
-    あなたの手 [[${tuser}]]<br>
-    相手の手 [[${tcpu}]]<br>
-    結果 [[${result}]]!<br>
-  </div>
+
 </body>
 
 </html>
