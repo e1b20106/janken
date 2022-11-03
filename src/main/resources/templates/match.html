@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+
+<head>
+  <meta charset="utf-8">
+  <title>match</title>
+</head>
+
+
+<body>
+  <a href="/logout">ログアウト</a>
+  <h1>Match</h1>
+  <h2>[[${user}]] V.S. [[${buser.name}]]</h2>
+
+  <div>
+    <a th:href="@{/fight(id=${buser.id},te=Gu)}">ぐー</a>
+    <a th:href="@{/fight(id=${buser.id},te=Choki)}">ちょき</a>
+    <a th:href="@{/fight(id=${buser.id},te=Pa)}">ぱー</a>
+  </div>
+  <div th:if="${result}">
+    あなたの手 [[${tuser}]]<br>
+    相手の手 [[${tcpu}]]<br>
+    結果 [[${result}]]!<br>
+  </div>
+
+  <a href="/janken">もどる</a>
+
+
+
+</body>
+
+</html>
