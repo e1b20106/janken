@@ -4,6 +4,7 @@ public class Janken {
   int user;
   int cpu;
   String result;
+  int usernum = 0;
 
   public Janken() {
   }

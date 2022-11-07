@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+
+<head>
+  <meta charset="utf-8">
+  <title>janken</title>
+  <script>
+    window.onload = function () {
+      var sse = new EventSource('/step9');
+
+    }
+  </script>
+</head>
+
+
+<body>
+  <h1>相手の手を待ってます</h1>
+  <div th:if="${user}">
+    Hi [[${user}]]<br>
+  </div>
+  <div th:each="Result,stat:${results}">
+    <tr>
+      <td>Match:id[[${Match.id}]]</td>
+      <td>user1:[[${Match.user1}]]</td>
+      <td>user2:[[${Match.user2}]]</td>
+      <td>user1Hand:[[${Match.user1Hand}]]</td>
+      <td>user2Hand:[[${Match.user2Hand}]]</td>
+    </tr>
+    <tr>
+      <a href="/janken">もどる</a>
+    </tr>
+  </div>
+
+</body>
+
+</html>
