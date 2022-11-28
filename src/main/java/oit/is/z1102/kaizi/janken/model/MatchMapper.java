@@ -20,12 +20,11 @@ public interface MatchMapper {
   @Select("SELECT * from matches where isActive = true;")
   Match selectAllResult();
 
-  @Insert("INSERT INTO matches (user1, user2, user1Hand, user2Hand) VALUES (#{user1},#{user2},#{user1Hand},#{user2Hand});")
-
+  @Insert("INSERT INTO matches (user1, user2, user1Hand, user2Hand, isActive) VALUES (#{user1},#{user2},#{user1Hand},#{user2Hand},#{isActive});")
   @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
   void insertMatch(Match match);
 
-  @Update("UPDATE matchinfo SET id=#{id}, user1=#{user1}, user2=#{user2}, user1Hand=#{user1Hand}, user2Hand=#{user2Hand}, isActive=#{isActive} where id = #{id}")
+  @Update("UPDATE matches SET isActive = FALSE where id = #{id}")
   void updateMatch(int id);
 
 }

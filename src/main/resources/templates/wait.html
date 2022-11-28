@@ -6,9 +6,17 @@
   <title>janken</title>
   <script>
     window.onload = function () {
-      var sse = new EventSource('/step9');
+      var sse = new EventSource('/result');
+      sse.onmessage = function (event) {
+        var resultdata = JSON.parse(event.data);
+        var result = "Match:id " + resultdata.id + " user1: " + resultdata.user1 + " user2: " + resultdata.user2 + " user1Hand: " + resultdata.user1Hand + " user2Hand: " + resultdata.user2Hand + "<br><a href=\" /janken\">もどる</a>";
 
+        var tbody = document.getElementById("result");
+        tbody.innerHTML = result;
+
+      }
     }
+
   </script>
 </head>
 
@@ -18,19 +26,7 @@
   <div th:if="${user}">
     Hi [[${user}]]<br>
   </div>
-  <div th:each="Result,stat:${results}">
-    <tr>
-      <td>Match:id[[${Match.id}]]</td>
-      <td>user1:[[${Match.user1}]]</td>
-      <td>user2:[[${Match.user2}]]</td>
-      <td>user1Hand:[[${Match.user1Hand}]]</td>
-      <td>user2Hand:[[${Match.user2Hand}]]</td>
-    </tr>
-    <tr>
-      <a href="/janken">もどる</a>
-    </tr>
-  </div>
-
+  <div id="result"></div>
 </body>
 
 </html>
