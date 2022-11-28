@@ -21,7 +21,7 @@ public interface MatchInfoMapper {
   @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
   void insertMatchInfo(MatchInfo matchInfo);
 
-  @Update("UPDATE matchinfo SET isActive='false' where id = #{id}")
+  @Update("UPDATE matchinfo SET isActive= FALSE where id = #{id}")
   void updateByisActive(int id);
 
 }
